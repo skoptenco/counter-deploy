@@ -2,10 +2,10 @@
 FROM node:18 as nodebuild
 WORKDIR /app
 # copy frontend sources
-COPY ../frontend/package.json /app/package.json
-COPY ../frontend/vite.config.js /app/vite.config.js
-COPY ../frontend/index.html /app/index.html
-COPY ../frontend/src /app/src
+COPY frontend/package.json /app/package.json
+COPY frontend/vite.config.js /app/vite.config.js
+COPY frontend/index.html /app/index.html
+COPY frontend/src /app/src
 RUN npm ci
 RUN npm run build
 
