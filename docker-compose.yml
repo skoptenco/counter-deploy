@@ -1,15 +1,19 @@
 services:
   app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: skoptenco/counter-deploy:latest
     env_file:
       - ./backend/.env
     ports:
       - "80:8000"
     depends_on:
       - redis
-    restart: always
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [ node.role == worker ]
+
 
   redis:
     image: redis:7-alpine
